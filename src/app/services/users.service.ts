@@ -47,7 +47,6 @@ export class UsersService {
     },
   ];
 
-
   getUsers(): Observable<any> {
     return new Observable((observer) => {
       setTimeout(() => {
