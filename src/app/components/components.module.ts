@@ -4,12 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { DirectivesModule } from '../directives/directives.module';
 import { AngularMaterialModule } from '../angular-material.module';
-
-
+import { UsersCardListComponent } from './users-card-list/users-card-list.component';
 
 @NgModule({
   declarations: [
-
+    UsersCardListComponent
   ],
   imports: [
     FormsModule,
@@ -19,7 +18,7 @@ import { AngularMaterialModule } from '../angular-material.module';
     PipesModule
   ],
   exports: [
-    
+    UsersCardListComponent
   ]
 })
 export class ComponentsModule { }
