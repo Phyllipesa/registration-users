@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { StatesListResponse } from '../types/states-list-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BrazilianStatesService {
-  private readonly statesList = [
+  private readonly statesList: StatesListResponse = [
     { id: 12, descricao: 'Acre', descricaoContraida: 'AC' },
     { id: 27, descricao: 'Alagoas', descricaoContraida: 'AL' },
     { id: 16, descricao: 'Amapá', descricaoContraida: 'AP' },
@@ -33,7 +34,7 @@ export class BrazilianStatesService {
     { id: 35, descricao: 'São Paulo', descricaoContraida: 'SP' },
   ];
 
-  getStates(): Observable<any> {
+  getStates(): Observable<StatesListResponse> {
     return new Observable((observer) => {
       setTimeout(() => {
         observer.next(this.statesList);

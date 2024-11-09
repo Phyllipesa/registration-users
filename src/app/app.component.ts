@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from './services/users.service';
 import { GenresService } from './services/genres.service';
 import { BrazilianStatesService } from './services/brazilian-states.service';
+import { StatesListResponse } from './types/states-list-response';
+import { GenresListResponse } from './types/genres-list-response';
+import { UserListResponse } from './types/users-list-response';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +12,9 @@ import { BrazilianStatesService } from './services/brazilian-states.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  usersList: any = [];
-  genresList: any = [];
-  statesList: any = [];
+  usersList: UserListResponse = [];
+  genresList: GenresListResponse = [];
+  statesList: StatesListResponse = [];
 
   constructor(
     private readonly _usersService: UsersService,
