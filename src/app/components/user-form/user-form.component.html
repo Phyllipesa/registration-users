@@ -14,9 +14,20 @@
                 </mat-form-field>
             </div>
             <div class="user-form__row">
-                <div class="user-form__item user-form__item-50">
-                    <input style="width: 100%;" />
-                </div>
+                <mat-form-field class="user-form__item user-form__item-50">
+                    <mat-label>Usuário:</mat-label>
+                    <input 
+                        type="text"
+                        name="usuario"
+                        matInput
+                        [(ngModel)]="userSelected.username"
+                        #usernameControl="ngModel"
+                        required
+                    />
+                    <mat-hint>O <strong>Usuário</strong> será utilizado para o login.</mat-hint>
+                    <mat-error *ngIf="usernameControl.hasError('required')">O <strong>Usuário</strong> é obrigatório.</mat-error>
+                </mat-form-field>
+
                 <div class="user-form__item user-form__item-50">
                     <input style="width: 100%;" />
                 </div>
