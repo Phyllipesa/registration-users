@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { GenresListResponse } from '../../types/genres-list-response';
 import { IUser } from '../../interfaces/user/user.interface';
+import { GenresListResponse } from '../../types/genres-list-response';
 import { StatesListResponse } from '../../types/states-list-response';
+import { convertPtBrDateToDateObj } from '../../utils/convert-pt-br-date-to-date-obj';
 import { getPasswordStrengthValue } from '../../utils/get-password-strength-value';
 
 @Component({
@@ -13,6 +14,7 @@ export class UserFormComponent implements OnInit, OnChanges {
 passwordStrenghtValue = 0;
 minDate: Date | null = null;
 maxDate: Date | null = null;
+dateValue: Date | null = null;
 
 
   @Input() genresList: GenresListResponse = [];
@@ -27,19 +29,23 @@ maxDate: Date | null = null;
     const USER_CHANGED = changes['userSelected'];
     
     if (USER_CHANGED) {
+      this.setBirthDateToDatepicker(this.userSelected.birthDate);
       this.onPasswordChange(this.userSelected.password);
     }
   }
-  
+ 
   onPasswordChange(password: string) {
     this.passwordStrenghtValue = getPasswordStrengthValue(password);
   }
   
-  setMindAndMaxDate() {
+  private setMindAndMaxDate() {
     this.maxDate = new Date();
     this.minDate = new Date(
       new Date().getFullYear() -100, 0, 1
     );
   }
   
+  private setBirthDateToDatepicker(birthDate: string) {
+    this.dateValue = convertPtBrDateToDateObj(birthDate)
+  }
 }
