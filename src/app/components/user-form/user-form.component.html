@@ -105,6 +105,7 @@
                         [min]="minDate"
                         [max]="maxDate"
                         [ngModel]="dateValue"
+                        (dateChange)="onDateChange($event)"
                         ngModel
                         readonly
                         required
