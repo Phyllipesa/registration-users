@@ -149,7 +149,13 @@
 
                         <ng-container matColumnDef="band">
                             <th mat-header-cell *matHeaderCellDef>Banda</th>
-                            <td mat-cell *matCellDef="let element"> {{ element.band }} </td>
+                            <td mat-cell *matCellDef="let element; let i = index">
+                                <mat-form-field>
+                                    <mat-label>Banda:</mat-label>
+                                    <input type="text" [name]="'banda-' + i" matInput [(ngModel)]="element.band" required="">
+                                    <mat-error>A <strong>Banda</strong> é obrigatória.</mat-error>
+                                </mat-form-field>
+                            </td>
                         </ng-container>
 
                         <ng-container matColumnDef="genre">
