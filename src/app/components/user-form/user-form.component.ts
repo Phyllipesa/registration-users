@@ -20,6 +20,7 @@ export class UserFormComponent implements OnInit, OnChanges {
   dateValue: Date | null = null;
 
   displayedColumns: string[] = ['title', 'band', 'genre', 'favorite'];
+  filteredGenreList: GenresListResponse = [];
 
   @Input() genresList: GenresListResponse = [];
   @Input() statesList: StatesListResponse = [];
@@ -35,6 +36,7 @@ export class UserFormComponent implements OnInit, OnChanges {
     if (USER_CHANGED) {
       this.setBirthDateToDatepicker(this.userSelected.birthDate);
       this.onPasswordChange(this.userSelected.password);
+      this.filteredGenreList = this.genresList
     }
   }
 
@@ -45,6 +47,21 @@ export class UserFormComponent implements OnInit, OnChanges {
   onDateChange(event: MatDatepickerInputEvent<any, any>) {
     if (!event.value) return;
     this.userSelected.birthDate = convertDateObjToPtBrDate(event.value);
+  }
+
+  displayFn(genreId: number) {
+    const genreFound = this.genresList.find(genre => genre.id === genreId);
+    return genreFound ? genreFound.description : '';
+  }
+
+  filterGenres(text: string) {
+    if (typeof text === 'number') return;
+
+    const searchTerm = text.toLowerCase();
+
+    this.filteredGenreList = this.genresList.filter(genre =>
+      genre.description.toLowerCase().includes(searchTerm)
+    );
   }
 
   private setMindAndMaxDate() {
