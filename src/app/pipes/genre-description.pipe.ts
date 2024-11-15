@@ -1,12 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { GenresService } from '../services/genres.service';
 
 @Pipe({
   name: 'genreDescription'
 })
 export class GenreDescriptionPipe implements PipeTransform {
+  constructor(
+    private _genresService: GenresService
+  ) {}
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(genreId: number): string {
+    return this._genresService.getGenreDescription(genreId);
   }
-
 }
