@@ -6,7 +6,7 @@ import { GenresService } from '../services/genres.service';
 })
 export class GenreDescriptionPipe implements PipeTransform {
   constructor(
-    private _genresService: GenresService
+    private readonly _genresService: GenresService
   ) {}
 
   transform(genreId: number): string {
