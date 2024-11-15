@@ -6,6 +6,8 @@ import { StatesListResponse } from './types/states-list-response';
 import { GenresListResponse } from './types/genres-list-response';
 import { UserListResponse } from './types/users-list-response';
 import { IUser } from './interfaces/user/user.interface';
+import { MatDialog } from '@angular/material/dialog';
+import { UserBeforeAndAfterDialogComponent } from './components/user-before-and-after-dialog/user-before-and-after-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,7 @@ import { IUser } from './interfaces/user/user.interface';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
+
   userSelected: IUser = {} as IUser;
   userSelectedIndex: number | undefined;
 
@@ -23,8 +26,9 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly _usersService: UsersService,
     private readonly _genresService: GenresService,
-    private readonly _brazilianStatesService: BrazilianStatesService
-  ) {}
+    private readonly _brazilianStatesService: BrazilianStatesService,
+    private readonly _matDialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.getUsers();
@@ -41,10 +45,20 @@ export class AppComponent implements OnInit {
     }
   }
 
+  onFormSubmit() {
+    this.openBeforeAndAfterDialog();
+  }
+
+  private openBeforeAndAfterDialog() {
+    this._matDialog.open(UserBeforeAndAfterDialogComponent, {
+      minWidth: '70%',
+    })
+  }
+
   private getUsers() {
     this._usersService.getUsers().subscribe((userListResponse) => this.usersList = userListResponse)
   }
-  
+
   private getGenres() {
     this._genresService.getGenres().subscribe((genresListResponse) => this.genresList = genresListResponse)
   }
