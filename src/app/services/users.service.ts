@@ -39,7 +39,7 @@ export class UsersService {
       email: 'usuario3@example.com',
       password: 'senha3@123@122',
       birthDate: '03/03/2000',
-      state: 45,
+      state: 42,
       musics: [
         { title: 'Easy', band: 'Comodores', genre: 2, isFavorite: true },
         { title: 'True', band: 'Spandau Ballet', genre: 2, isFavorite: false },
