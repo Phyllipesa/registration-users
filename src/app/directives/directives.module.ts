@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { EmailPatternValidatorDirective } from './email-pattern-validator.directive';
 import { CredentialsValidatorDirective } from './credentials-validator.directive';
+import { EmailPatternValidatorDirective } from './email-pattern-validator.directive';
 import { PasswordStrengthValidatorDirective } from './password-strength-validator.directive';
 import { PasswordConfirmationValidatorDirective } from './password-confirmation-validator.directive';
 
@@ -8,16 +8,16 @@ import { PasswordConfirmationValidatorDirective } from './password-confirmation-
 
 @NgModule({
   declarations: [
-    EmailPatternValidatorDirective,
     CredentialsValidatorDirective,
+    EmailPatternValidatorDirective,
     PasswordStrengthValidatorDirective,
     PasswordConfirmationValidatorDirective
   ],
   imports: [
   ],
   exports: [
-    EmailPatternValidatorDirective,
     CredentialsValidatorDirective,
+    EmailPatternValidatorDirective,
     PasswordStrengthValidatorDirective,
     PasswordConfirmationValidatorDirective
   ],

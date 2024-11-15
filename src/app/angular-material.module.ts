@@ -4,6 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,6 +20,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
         MatTableModule,
         MatSelectModule,
         MatButtonModule,
+        MatDialogModule,
         MatDividerModule,
         MatCheckboxModule,
         MatFormFieldModule,
@@ -32,6 +34,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
         MatInputModule,
         MatTableModule,
         MatSelectModule,
+        MatDialogModule,
         MatButtonModule,
         MatDividerModule,
         MatCheckboxModule,
