@@ -4,9 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'isFavoriteDescription'
 })
 export class IsFavoriteDescriptionPipe implements PipeTransform {
-
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(isFavorite: boolean): string {
+    return isFavorite ? 'Sim' : 'Não';
   }
-
 }
