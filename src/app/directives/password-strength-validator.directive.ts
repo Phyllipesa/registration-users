@@ -13,6 +13,16 @@ import zxcvbn from 'zxcvbn';
     }
   ]
 })
+/**
+ *  Password strength validator directive
+ * 
+ *  This directive is used to validate the password strength.
+ *  It uses the zxcvbn library to validate the password strength.
+ * 
+ *  @param control: AbstractControl
+ *  @returns {ValidationErrors | null} - Returns null if the password strength is valid,
+ *  otherwise returns an object with the invalidPasswordStrenght property set to true
+ */
 export class PasswordStrengthValidatorDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
     if (!control || !control.value) return null;

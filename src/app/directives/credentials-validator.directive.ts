@@ -13,6 +13,12 @@ import { UsersPlaceholderService } from '../services/users-placeholder.service';
     }
   ]
 })
+/**
+ *  Directive to validate if the username or email is already in use
+ * 
+ *  @param propToCheck: 'username' | 'email'
+ *  @returns ValidationErrors | null
+ */
 export class CredentialsValidatorDirective implements AsyncValidator {
   @Input('appCredentialsValidator') propToCheck: 'username' | 'email' = 'username';
 
@@ -20,6 +26,14 @@ export class CredentialsValidatorDirective implements AsyncValidator {
     private readonly _usersPlaceholderService: UsersPlaceholderService
   ) { }
 
+  /**
+   *  Validate if the username or email is already in use 
+   *  by checking if the value is present in the users list
+   *  and return an error if it is otherwise return null
+   * 
+   *  @param control: AbstractControl
+   *  @returns ValidationErrors | null
+   */
   validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
     return this._usersPlaceholderService
     .getUsersPlaceholders()

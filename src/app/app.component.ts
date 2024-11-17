@@ -14,6 +14,17 @@ import { UserBeforeAndAfterDialogComponent } from './components/user-before-and-
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+/**
+ *  AppComponent
+ *
+ *  This component is responsible for displaying the app
+ *
+ *  @method ngOnInit - This method is called when the component is initialized
+ *  @method onUserSelected - This method is called when the user is selected
+ *  @method onFormSubmit - This method is called when the form is submitted
+ *  @method openBeforeAndAfterDialog - This method is called when the form is submitted
+ *  @method confirmUserUpdate - This method is called when the user is updated
+ */
 export class AppComponent implements OnInit {
 
   userSelected: IUser = {} as IUser;
@@ -57,6 +68,19 @@ export class AppComponent implements OnInit {
     );
   }
 
+  /**
+   *  openBeforeAndAfterDialog,
+   * 
+   *  Open the before and after dialog
+   *  and wait for the user to confirm the update
+   *  if the user confirms the update, the user is updated
+   *  if the user doesn't confirm the update, the user is not updated
+   *
+   *  Open the before and after dialog
+   * @param originalUser 
+   * @param updatedUser 
+   * @param userSelectedIndex 
+   */
   private openBeforeAndAfterDialog(originalUser: IUser, updatedUser: IUser, userSelectedIndex: number) {
     const dialogRef = this._matDialog.open(UserBeforeAndAfterDialogComponent, {
       data: {

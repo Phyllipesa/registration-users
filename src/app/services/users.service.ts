@@ -5,6 +5,9 @@ import { UserListResponse } from '../types/users-list-response';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ *  @description Service to get the list of users
+ */
 export class UsersService {
   private readonly usersList: UserListResponse = [
     {
@@ -48,6 +51,11 @@ export class UsersService {
     },
   ];
 
+  /**
+   *  getUsers - Get the list of users
+   * 
+   * @returns Observable<UserListResponse> - Observable with the list of users
+   */
   getUsers(): Observable<UserListResponse> {
     return new Observable((observer) => {
       setTimeout(() => {

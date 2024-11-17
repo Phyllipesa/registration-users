@@ -5,6 +5,9 @@ import { StatesListResponse } from '../types/states-list-response';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ *  @description Service to get the list of Brazilian states
+ */
 export class BrazilianStatesService {
   private readonly statesList: StatesListResponse = [
     { id: 12, descricao: 'Acre', descricaoContraida: 'AC' },
@@ -34,6 +37,11 @@ export class BrazilianStatesService {
     { id: 35, descricao: 'São Paulo', descricaoContraida: 'SP' },
   ];
 
+  /**
+   *  getStates - Get the list of Brazilian states
+   * 
+   * @returns Observable<StatesListResponse> - Observable with the list of Brazilian states
+   */
   getStates(): Observable<StatesListResponse> {
     return new Observable((observer) => {
       setTimeout(() => {
@@ -43,6 +51,12 @@ export class BrazilianStatesService {
     });
   }
 
+  /**
+   *  getStateDescription - Get the description of a state
+   *
+   * @param stateId - Id of the state
+   * @returns string - Description of the state
+   */
   getStateDescription(stateId: number): string {
     const stateDescription = this.statesList.find(state => state.id === stateId)?.descricao;
     return stateDescription ? stateDescription : '';

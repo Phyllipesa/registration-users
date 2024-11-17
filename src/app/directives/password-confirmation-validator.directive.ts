@@ -11,12 +11,15 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
     }
   ]
 })
-/*
-  A diretiva é adicionada ao Formulário e não ao item do formulário, pois o item do formulário
-  não possui acesso ao valor do outro item do formulário.
-  A diretiva é adicionada ao Formulário para que possa acessar os valores dos itens do formulário
-  e realizar a validação.
-*/
+/**
+ *  Password confirmation validator directive
+ * 
+ *  This directive is used to checks if the password and password confirmation match 
+ *  
+ *  @param control: AbstractControl
+ *  @returns {ValidationErrors | null} - Returns null if the password confirmation is valid,
+ *    otherwise returns an object with the invalidPasswordConfirmation property set to true
+ */
 export class PasswordConfirmationValidatorDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
 

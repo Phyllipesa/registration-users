@@ -13,6 +13,26 @@ import { NgForm } from '@angular/forms';
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss'
 })
+/**
+ *  UserFormComponent
+ *
+ *  This component is responsible for displaying the user form
+ *  and handling the user form events
+ *
+ *  @param genresList - The list of genres
+ *  @param statesList - The list of states
+ *  @param userSelected - The user selected
+ *
+ *  @method ngOnInit - This method is called when the component is initialized
+ *  @method ngOnChanges - This method is called when the component input changes
+ *  @method onPasswordChange - This method is called when the password changes
+ *  @method onDateChange - This method is called when the date changes
+ *  @method displayFn - This method is called when the genre is displayed
+ *  @method filterGenres - This method is called when the genre is filtered
+ *  @method onFormSubmit - This method is called when the form is submitted
+ *  @method setMindAndMaxDate - This method is called when the component is initialized
+ *  @method setBirthDateToDatepicker - This method is called when the component is initialized
+ */
 export class UserFormComponent implements OnInit, OnChanges {
   passwordStrenghtValue = 0;
   minDate: Date | null = null;
@@ -45,21 +65,51 @@ export class UserFormComponent implements OnInit, OnChanges {
       this.filteredGenreList = this.genresList
     }
   }
-
+  
+/**
+ *  onPasswordChange
+ * 
+ *  Set the passwordStrenghtValue property based on the password strength
+ *  and emit the password change event
+ * @param password 
+ */
   onPasswordChange(password: string) {
     this.passwordStrenghtValue = getPasswordStrengthValue(password);
   }
 
+  /**
+   *  onDateChange
+   *
+   *  Set the dateValue property based on the date change event
+   *  and emit the date change event
+   * @param event 
+   */
   onDateChange(event: MatDatepickerInputEvent<any, any>) {
     if (!event.value) return;
     this.userSelected.birthDate = convertDateObjToPtBrDate(event.value);
   }
 
-  displayFn(genreId: number) {
+  /**
+   *  displayFn
+   *
+   *  Display the genre description in the autocomplete
+   * @param genreId 
+   * 
+   */
+  displayFn(genreId: number): string {
     const genreFound = this.genresList.find(genre => genre.id === genreId);
     return genreFound ? genreFound.description : '';
   }
 
+  /**
+   *  filterGenres
+   *
+   *  Filter the genres list based on the search term
+   * @param text 
+   * 
+   *  If the text is a number, return
+   *  If the text is not a number, filter the genres list based on the search term
+   */
   filterGenres(text: string) {
     if (typeof text === 'number') return;
 
@@ -70,10 +120,25 @@ export class UserFormComponent implements OnInit, OnChanges {
     );
   }
 
+  /**
+   *  isAnyCheckboxChecked
+   *
+   *  Check if any checkbox is checked
+   *  If any checkbox is checked, the user has at least one favorite music
+   *  If no checkbox is checked, the user has no favorite music
+   * @returns boolean
+   */
   isAnyCheckboxChecked(): boolean {
     return this.userSelected.musics.some(music => music.isFavorite);
   }
 
+  /**
+   * onFormSubmit
+   * 
+   * Emit the form submit event
+   * @param form 
+   * @returns 
+   */
   onFormSubmit(form: NgForm) {
     if (form.invalid) {
       this.focusOnInvalidControl(form);
@@ -84,6 +149,12 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   }
 
+  /**
+   * focusOnInvalidControl
+   * 
+   * Focus on the first invalid control
+   * @param form 
+   */
   private focusOnInvalidControl(form: NgForm) {
     for (const control of Object.keys(form.controls)) {
       if (form.controls[control].invalid) {
@@ -96,6 +167,13 @@ export class UserFormComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   *  setMindAndMaxDate
+   * 
+   *  Set the min and max date for the datepicker
+   *  Min date is 100 years ago
+   *  Max date is today
+   */
   private setMindAndMaxDate() {
     this.maxDate = new Date();
     this.minDate = new Date(
@@ -103,6 +181,12 @@ export class UserFormComponent implements OnInit, OnChanges {
     );
   }
 
+  /**
+   * setBirthDateToDatepicker 
+   * 
+   * Convert a date string to a date object and set it to the datepicker
+   * @param birthDate
+   */
   private setBirthDateToDatepicker(birthDate: string) {
     this.dateValue = convertPtBrDateToDateObj(birthDate)
   }

@@ -5,6 +5,9 @@ import { GenresListResponse } from '../types/genres-list-response';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ *  @description Service to get the list of genres
+ */
 export class GenresService {
   private readonly genresList: GenresListResponse = [
     { id: 1, description: 'Rock' },
@@ -29,6 +32,11 @@ export class GenresService {
     { id: 20, description: 'Pop Rock' },
   ]
 
+  /**
+   *  getGenres - Get the list of genres
+   * 
+   * @returns Observable<GenresListResponse> - Observable with the list of genres
+   */
   getGenres(): Observable<GenresListResponse> {
     return new Observable((observer) => {
       setTimeout(() => {
@@ -38,6 +46,12 @@ export class GenresService {
     });
   }
 
+  /**
+   *  getGenreDescription - Get the description of a genre
+   *
+   * @param genreId - Id of the genre
+   * @returns string - Description of the genre
+   */
   getGenreDescription(genreId: number): string {
     const genreDescription = this.genresList.find((genre) => genre.id === genreId)?.description;
 
